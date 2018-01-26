@@ -1,0 +1,471 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		40A30A3C201ABF65007FBC06 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A30A3B201ABF65007FBC06 /* AppDelegate.m */; };
+		40A30A3F201ABF65007FBC06 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A30A3E201ABF65007FBC06 /* ViewController.m */; };
+		40A30A42201ABF65007FBC06 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40A30A40201ABF65007FBC06 /* Main.storyboard */; };
+		40A30A44201ABF65007FBC06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40A30A43201ABF65007FBC06 /* Assets.xcassets */; };
+		40A30A47201ABF65007FBC06 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40A30A45201ABF65007FBC06 /* LaunchScreen.storyboard */; };
+		40A30A4A201ABF65007FBC06 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A30A49201ABF65007FBC06 /* main.m */; };
+		40A30A53201ABFB6007FBC06 /* XZPayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A30A52201ABFB6007FBC06 /* XZPayManager.m */; };
+		40A30A56201AC321007FBC06 /* AppDelegate+XZPay.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A30A55201AC321007FBC06 /* AppDelegate+XZPay.m */; };
+		40A30A5A201AD2BA007FBC06 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 40A30A58201AD2BA007FBC06 /* AlipaySDK.bundle */; };
+		40A30A5B201AD2BA007FBC06 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40A30A59201AD2BA007FBC06 /* AlipaySDK.framework */; };
+		40A30A5E201AD327007FBC06 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 40A30A5D201AD327007FBC06 /* libc++.tbd */; };
+		40A30A60201AD351007FBC06 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 40A30A5F201AD351007FBC06 /* libz.tbd */; };
+		40A30A62201AD36F007FBC06 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40A30A61201AD36F007FBC06 /* SystemConfiguration.framework */; };
+		40A30A64201AD37B007FBC06 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40A30A63201AD37B007FBC06 /* CoreTelephony.framework */; };
+		40A30A66201AD385007FBC06 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40A30A65201AD385007FBC06 /* QuartzCore.framework */; };
+		40A30A68201AD38F007FBC06 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40A30A67201AD38F007FBC06 /* CoreText.framework */; };
+		40A30A6A201AD399007FBC06 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40A30A69201AD399007FBC06 /* CoreGraphics.framework */; };
+		40A30A6C201AD3A5007FBC06 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40A30A6B201AD3A5007FBC06 /* UIKit.framework */; };
+		40A30A6E201AD3AD007FBC06 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40A30A6D201AD3AD007FBC06 /* Foundation.framework */; };
+		40A30A70201AD3B4007FBC06 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40A30A6F201AD3B4007FBC06 /* CFNetwork.framework */; };
+		40A30A72201AD3C2007FBC06 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40A30A71201AD3C2007FBC06 /* CoreMotion.framework */; };
+		40A30A79201AD448007FBC06 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 40A30A76201AD448007FBC06 /* README.txt */; };
+		40A30A7A201AD448007FBC06 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40A30A78201AD448007FBC06 /* libWeChatSDK.a */; };
+		40A30A7C201AD725007FBC06 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 40A30A7B201AD725007FBC06 /* libsqlite3.0.tbd */; };
+		40A30A7E201AD734007FBC06 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40A30A7D201AD733007FBC06 /* Security.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		40A30A37201ABF65007FBC06 /* XZPayManagerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XZPayManagerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		40A30A3A201ABF65007FBC06 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		40A30A3B201ABF65007FBC06 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		40A30A3D201ABF65007FBC06 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		40A30A3E201ABF65007FBC06 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		40A30A41201ABF65007FBC06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		40A30A43201ABF65007FBC06 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		40A30A46201ABF65007FBC06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		40A30A48201ABF65007FBC06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		40A30A49201ABF65007FBC06 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		40A30A51201ABFB6007FBC06 /* XZPayManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XZPayManager.h; sourceTree = "<group>"; };
+		40A30A52201ABFB6007FBC06 /* XZPayManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XZPayManager.m; sourceTree = "<group>"; };
+		40A30A54201AC321007FBC06 /* AppDelegate+XZPay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+XZPay.h"; sourceTree = "<group>"; };
+		40A30A55201AC321007FBC06 /* AppDelegate+XZPay.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+XZPay.m"; sourceTree = "<group>"; };
+		40A30A58201AD2BA007FBC06 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
+		40A30A59201AD2BA007FBC06 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
+		40A30A5D201AD327007FBC06 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		40A30A5F201AD351007FBC06 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		40A30A61201AD36F007FBC06 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		40A30A63201AD37B007FBC06 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		40A30A65201AD385007FBC06 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		40A30A67201AD38F007FBC06 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		40A30A69201AD399007FBC06 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		40A30A6B201AD3A5007FBC06 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		40A30A6D201AD3AD007FBC06 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		40A30A6F201AD3B4007FBC06 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		40A30A71201AD3C2007FBC06 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		40A30A74201AD448007FBC06 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		40A30A75201AD448007FBC06 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		40A30A76201AD448007FBC06 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		40A30A77201AD448007FBC06 /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
+		40A30A78201AD448007FBC06 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		40A30A7B201AD725007FBC06 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		40A30A7D201AD733007FBC06 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		40A30A34201ABF65007FBC06 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				40A30A70201AD3B4007FBC06 /* CFNetwork.framework in Frameworks */,
+				40A30A64201AD37B007FBC06 /* CoreTelephony.framework in Frameworks */,
+				40A30A7E201AD734007FBC06 /* Security.framework in Frameworks */,
+				40A30A7C201AD725007FBC06 /* libsqlite3.0.tbd in Frameworks */,
+				40A30A62201AD36F007FBC06 /* SystemConfiguration.framework in Frameworks */,
+				40A30A72201AD3C2007FBC06 /* CoreMotion.framework in Frameworks */,
+				40A30A6E201AD3AD007FBC06 /* Foundation.framework in Frameworks */,
+				40A30A6C201AD3A5007FBC06 /* UIKit.framework in Frameworks */,
+				40A30A7A201AD448007FBC06 /* libWeChatSDK.a in Frameworks */,
+				40A30A6A201AD399007FBC06 /* CoreGraphics.framework in Frameworks */,
+				40A30A68201AD38F007FBC06 /* CoreText.framework in Frameworks */,
+				40A30A66201AD385007FBC06 /* QuartzCore.framework in Frameworks */,
+				40A30A60201AD351007FBC06 /* libz.tbd in Frameworks */,
+				40A30A5E201AD327007FBC06 /* libc++.tbd in Frameworks */,
+				40A30A5B201AD2BA007FBC06 /* AlipaySDK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		40A30A2E201ABF65007FBC06 = {
+			isa = PBXGroup;
+			children = (
+				40A30A39201ABF65007FBC06 /* XZPayManagerDemo */,
+				40A30A38201ABF65007FBC06 /* Products */,
+				40A30A5C201AD327007FBC06 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		40A30A38201ABF65007FBC06 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				40A30A37201ABF65007FBC06 /* XZPayManagerDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		40A30A39201ABF65007FBC06 /* XZPayManagerDemo */ = {
+			isa = PBXGroup;
+			children = (
+				40A30A73201AD448007FBC06 /* WechatSDK1.8.2 */,
+				40A30A57201AD2AF007FBC06 /* AlipaySDK_V15.5.0 */,
+				40A30A50201ABF88007FBC06 /* XZPayManager */,
+				40A30A3A201ABF65007FBC06 /* AppDelegate.h */,
+				40A30A3B201ABF65007FBC06 /* AppDelegate.m */,
+				40A30A3D201ABF65007FBC06 /* ViewController.h */,
+				40A30A3E201ABF65007FBC06 /* ViewController.m */,
+				40A30A40201ABF65007FBC06 /* Main.storyboard */,
+				40A30A43201ABF65007FBC06 /* Assets.xcassets */,
+				40A30A45201ABF65007FBC06 /* LaunchScreen.storyboard */,
+				40A30A48201ABF65007FBC06 /* Info.plist */,
+				40A30A49201ABF65007FBC06 /* main.m */,
+			);
+			path = XZPayManagerDemo;
+			sourceTree = "<group>";
+		};
+		40A30A50201ABF88007FBC06 /* XZPayManager */ = {
+			isa = PBXGroup;
+			children = (
+				40A30A51201ABFB6007FBC06 /* XZPayManager.h */,
+				40A30A52201ABFB6007FBC06 /* XZPayManager.m */,
+				40A30A54201AC321007FBC06 /* AppDelegate+XZPay.h */,
+				40A30A55201AC321007FBC06 /* AppDelegate+XZPay.m */,
+			);
+			path = XZPayManager;
+			sourceTree = "<group>";
+		};
+		40A30A57201AD2AF007FBC06 /* AlipaySDK_V15.5.0 */ = {
+			isa = PBXGroup;
+			children = (
+				40A30A58201AD2BA007FBC06 /* AlipaySDK.bundle */,
+				40A30A59201AD2BA007FBC06 /* AlipaySDK.framework */,
+			);
+			path = AlipaySDK_V15.5.0;
+			sourceTree = "<group>";
+		};
+		40A30A5C201AD327007FBC06 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				40A30A7D201AD733007FBC06 /* Security.framework */,
+				40A30A7B201AD725007FBC06 /* libsqlite3.0.tbd */,
+				40A30A71201AD3C2007FBC06 /* CoreMotion.framework */,
+				40A30A6F201AD3B4007FBC06 /* CFNetwork.framework */,
+				40A30A6D201AD3AD007FBC06 /* Foundation.framework */,
+				40A30A6B201AD3A5007FBC06 /* UIKit.framework */,
+				40A30A69201AD399007FBC06 /* CoreGraphics.framework */,
+				40A30A67201AD38F007FBC06 /* CoreText.framework */,
+				40A30A65201AD385007FBC06 /* QuartzCore.framework */,
+				40A30A63201AD37B007FBC06 /* CoreTelephony.framework */,
+				40A30A61201AD36F007FBC06 /* SystemConfiguration.framework */,
+				40A30A5F201AD351007FBC06 /* libz.tbd */,
+				40A30A5D201AD327007FBC06 /* libc++.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		40A30A73201AD448007FBC06 /* WechatSDK1.8.2 */ = {
+			isa = PBXGroup;
+			children = (
+				40A30A74201AD448007FBC06 /* WXApi.h */,
+				40A30A75201AD448007FBC06 /* WXApiObject.h */,
+				40A30A76201AD448007FBC06 /* README.txt */,
+				40A30A77201AD448007FBC06 /* WechatAuthSDK.h */,
+				40A30A78201AD448007FBC06 /* libWeChatSDK.a */,
+			);
+			path = WechatSDK1.8.2;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		40A30A36201ABF65007FBC06 /* XZPayManagerDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 40A30A4D201ABF65007FBC06 /* Build configuration list for PBXNativeTarget "XZPayManagerDemo" */;
+			buildPhases = (
+				40A30A33201ABF65007FBC06 /* Sources */,
+				40A30A34201ABF65007FBC06 /* Frameworks */,
+				40A30A35201ABF65007FBC06 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = XZPayManagerDemo;
+			productName = XZPayManagerDemo;
+			productReference = 40A30A37201ABF65007FBC06 /* XZPayManagerDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		40A30A2F201ABF65007FBC06 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = dreamer;
+				TargetAttributes = {
+					40A30A36201ABF65007FBC06 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 40A30A32201ABF65007FBC06 /* Build configuration list for PBXProject "XZPayManagerDemo" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 40A30A2E201ABF65007FBC06;
+			productRefGroup = 40A30A38201ABF65007FBC06 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				40A30A36201ABF65007FBC06 /* XZPayManagerDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		40A30A35201ABF65007FBC06 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				40A30A47201ABF65007FBC06 /* LaunchScreen.storyboard in Resources */,
+				40A30A44201ABF65007FBC06 /* Assets.xcassets in Resources */,
+				40A30A5A201AD2BA007FBC06 /* AlipaySDK.bundle in Resources */,
+				40A30A42201ABF65007FBC06 /* Main.storyboard in Resources */,
+				40A30A79201AD448007FBC06 /* README.txt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		40A30A33201ABF65007FBC06 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				40A30A53201ABFB6007FBC06 /* XZPayManager.m in Sources */,
+				40A30A56201AC321007FBC06 /* AppDelegate+XZPay.m in Sources */,
+				40A30A3F201ABF65007FBC06 /* ViewController.m in Sources */,
+				40A30A4A201ABF65007FBC06 /* main.m in Sources */,
+				40A30A3C201ABF65007FBC06 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		40A30A40201ABF65007FBC06 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				40A30A41201ABF65007FBC06 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		40A30A45201ABF65007FBC06 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				40A30A46201ABF65007FBC06 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		40A30A4B201ABF65007FBC06 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		40A30A4C201ABF65007FBC06 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		40A30A4E201ABF65007FBC06 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3TJ96NT76F;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/XZPayManagerDemo/AlipaySDK_V15.5.0",
+				);
+				INFOPLIST_FILE = XZPayManagerDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/XZPayManagerDemo/WechatSDK1.8.2",
+				);
+				OTHER_LDFLAGS = (
+					"-Objc",
+					"-all_load",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dreamer.XZPayManagerDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		40A30A4F201ABF65007FBC06 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3TJ96NT76F;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/XZPayManagerDemo/AlipaySDK_V15.5.0",
+				);
+				INFOPLIST_FILE = XZPayManagerDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/XZPayManagerDemo/WechatSDK1.8.2",
+				);
+				OTHER_LDFLAGS = (
+					"-Objc",
+					"-all_load",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dreamer.XZPayManagerDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		40A30A32201ABF65007FBC06 /* Build configuration list for PBXProject "XZPayManagerDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				40A30A4B201ABF65007FBC06 /* Debug */,
+				40A30A4C201ABF65007FBC06 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		40A30A4D201ABF65007FBC06 /* Build configuration list for PBXNativeTarget "XZPayManagerDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				40A30A4E201ABF65007FBC06 /* Debug */,
+				40A30A4F201ABF65007FBC06 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 40A30A2F201ABF65007FBC06 /* Project object */;
+}
