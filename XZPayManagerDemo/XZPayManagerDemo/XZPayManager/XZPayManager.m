@@ -21,6 +21,7 @@
 NSString * const ALIPAY_URLIDENTIFIER = @"zhifubao";
 NSString * const WECHAT_URLIDENTIFIER = @"weixin";
 NSString * const UNION_URLIDENTIFIER = @"union";
+NSString * const Apple_MerchantID = @"此处需换成从开发者帐号配置得到的MerchantID";
 
 @interface XZPayManager()<WXApiDelegate, UPAPayPluginDelegate>
 
@@ -41,6 +42,30 @@ NSString * const UNION_URLIDENTIFIER = @"union";
     return payManager;
 }
 
+#pragma mark - 支付注册
+- (void)xz_registerApp {
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"Info" ofType:@"plist"];
+    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:path];
+    NSArray *urlTypes = dict[@"CFBundleURLTypes"];
+    NSAssert(urlTypes, XZTIP_PLEASEADDURLTYPE);
+    for (NSDictionary *urlTypeDict in urlTypes) {
+        NSString *urlName = urlTypeDict[@"CFBundleURLName"];
+        NSArray *urlSchemes = urlTypeDict[@"CFBundleURLSchemes"];
+        NSString *urlScheme = [urlSchemes lastObject];
+        NSAssert(urlSchemes.count, XZTIP_URLTYPE_SCHEME(urlName));
+        //双向验证，Info.plist 与本文件中定义的ALIPAY_URLIDENTIFIER做比较，确保配置正确
+        if ([urlName isEqualToString:WECHAT_URLIDENTIFIER]) {
+            [self.appSchemeDict setValue:urlScheme forKey:WECHAT_URLIDENTIFIER];
+            [WXApi registerApp:urlScheme];
+        } else if ([urlName isEqualToString:ALIPAY_URLIDENTIFIER]) {
+            [self.appSchemeDict setValue:urlScheme forKey:ALIPAY_URLIDENTIFIER];
+        } else if ([urlName isEqualToString:UNION_URLIDENTIFIER]) {
+            [self.appSchemeDict setValue:urlScheme forKey:UNION_URLIDENTIFIER];
+        }
+    }
+}
+
+#pragma mark - 支付跳转
 - (BOOL)xz_handleUrl:(NSURL *)url {
     NSAssert(url, XZTIP_ORDERINFOISEMPTY);
     if ([url.host isEqualToString:@"pay"]) {
@@ -82,23 +107,25 @@ NSString * const UNION_URLIDENTIFIER = @"union";
             }
             NSLog(@"授权结果 authCode = %@", authCode?:@"");
         }];
-    } else if ([url.host isEqualToString:@"paydemo"]) {
+    } else if ([url.host isEqualToString:@"uppayresult"]) {
         [[UPPaymentControl defaultControl] handlePaymentResult:url completeBlock:^(NSString *code, NSDictionary *data) {
             XZPayStatusCode errorCode = XZPayStatusSuccess;
-            NSString *signStr = @"";//交易成功返回的签名数据，需要发送到服务端进行验证
+            NSString *errStr = @"";
             if ([code isEqualToString:@"success"]) {//交易成功
                 errorCode = XZPayStatusSuccess;
+                if (data != nil) {//交易成功返回的签名数据，需要发送到服务端进行验证
+                    NSData *signData = [NSJSONSerialization dataWithJSONObject:data options:0 error:nil];
+                    errStr = [[NSString alloc] initWithData:signData encoding:NSUTF8StringEncoding];
+                }
             } else if ([code isEqualToString:@"fail"]) {//交易失败
                 errorCode = XZPayStatusFailure;
+                errStr = @"订单支付失败";
             } else if ([code isEqualToString:@"cancel"]) {//交易取消
                 errorCode = XZPayStatusCancel;
-            }
-            if (data != nil) {
-                NSData *signData = [NSJSONSerialization dataWithJSONObject:data options:0 error:nil];
-                signStr = [[NSString alloc] initWithData:signData encoding:NSUTF8StringEncoding];
+                errStr = @"用户中途取消";
             }
             if (self.payCompleteCallBack) {
-                self.payCompleteCallBack(errorCode,signStr);
+                self.payCompleteCallBack(errorCode,errStr);
             }
         }];
     }
@@ -106,37 +133,18 @@ NSString * const UNION_URLIDENTIFIER = @"union";
     return YES;
 }
 
-- (void)xz_registerApp {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"Info" ofType:@"plist"];
-    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:path];
-    NSArray *urlTypes = dict[@"CFBundleURLTypes"];
-    NSAssert(urlTypes, XZTIP_PLEASEADDURLTYPE);
-    for (NSDictionary *urlTypeDict in urlTypes) {
-        NSString *urlName = urlTypeDict[@"CFBundleURLName"];
-        NSArray *urlSchemes = urlTypeDict[@"CFBundleURLSchemes"];
-        NSString *urlScheme = [urlSchemes lastObject];
-        NSAssert(urlSchemes.count, XZTIP_URLTYPE_SCHEME(urlName));
-        //双向验证，Info.plist 与本文件中定义的ALIPAY_URLIDENTIFIER做比较，确保配置正确
-        if ([urlName isEqualToString:WECHAT_URLIDENTIFIER]) {
-            [self.appSchemeDict setValue:urlScheme forKey:WECHAT_URLIDENTIFIER];
-            [WXApi registerApp:urlScheme];
-        } else if ([urlName isEqualToString:ALIPAY_URLIDENTIFIER]) {
-            [self.appSchemeDict setValue:urlScheme forKey:ALIPAY_URLIDENTIFIER];
-        } else if ([urlName isEqualToString:UNION_URLIDENTIFIER]) {
-            [self.appSchemeDict setValue:urlScheme forKey:UNION_URLIDENTIFIER];
-        }
-    }
-}
-
-- (void)xz_payWithOrderInfo:(id)orderInfo payCallBack:(XZPayCompleteCallBack)payCallBack {
+#pragma mark - 发起支付
+- (void)xz_payWithOrderInfo:(id)orderInfo payType:(XZPayType)payType payVC:(UIViewController*)payVC  payCallBack:(XZPayCompleteCallBack)payCallBack {
     NSAssert(orderInfo, XZTIP_ORDERINFOISEMPTY);
     
     self.payCompleteCallBack = payCallBack;
     
-    if ([orderInfo isKindOfClass:[PayReq class]]) {
+    if (payType == XZPayTypeWechat) {//微信支付
         NSAssert(self.appSchemeDict[WECHAT_URLIDENTIFIER], XZTIP_URLTYPE_SCHEME(WECHAT_URLIDENTIFIER));
-        [WXApi sendReq:(BaseReq *)orderInfo];
-    } else if ([orderInfo isKindOfClass:[NSString class]]) {
+        if ([orderInfo isKindOfClass:[PayReq class]]) {
+            [WXApi sendReq:(BaseReq *)orderInfo];
+        }
+    } else if (payType == XZPayTypeAlipay) {//支付宝支付
         NSAssert(![orderInfo isEqualToString:@""], XZTIP_ORDERINFOISEMPTY);
         NSAssert(self.appSchemeDict[ALIPAY_URLIDENTIFIER], XZTIP_URLTYPE_SCHEME(ALIPAY_URLIDENTIFIER));
         [[AlipaySDK defaultService] payOrder:(NSString *)orderInfo fromScheme:(NSString *)self.appSchemeDict[ALIPAY_URLIDENTIFIER] callback:^(NSDictionary *resultDic) {
@@ -158,21 +166,24 @@ NSString * const UNION_URLIDENTIFIER = @"union";
                 self.payCompleteCallBack(errorCode,errStr);
             }
         }];
+    } else if (payType == XZPayTypeUnion) {//银联支付
+        NSAssert(![orderInfo isEqualToString:@""], XZTIP_ORDERINFOISEMPTY);
+        NSAssert(self.appSchemeDict[UNION_URLIDENTIFIER], XZTIP_URLTYPE_SCHEME(UNION_URLIDENTIFIER));
+        [[UPPaymentControl defaultControl] startPay:(NSString *)orderInfo fromScheme:(NSString *)self.appSchemeDict[UNION_URLIDENTIFIER] mode:@"00" viewController:payVC];//00生产环境，01测试环境
+    } else if (payType == XZPayTypeApplePay) {//ApplePay
+        NSAssert(![orderInfo isEqualToString:@""], XZTIP_ORDERINFOISEMPTY);
+        [UPAPayPlugin startPay:(NSString *)orderInfo mode:@"00" viewController:payVC delegate:self andAPMechantID:Apple_MerchantID];//00生产环境，01测试环境
     }
 }
 
-- (void)xz_payWithOrderInfo:(NSString *)orderInfo payVC:(UIViewController*)payVC  payCallBack:(XZPayCompleteCallBack)payCallBack {
-    NSAssert(orderInfo, XZTIP_ORDERINFOISEMPTY);
-    
-    self.payCompleteCallBack = payCallBack;
-    if ([orderInfo isEqualToString:@"ApplePay"]) {
-        NSAssert(![orderInfo isEqualToString:@""], XZTIP_ORDERINFOISEMPTY);
-        [UPAPayPlugin startPay:orderInfo mode:@"00" viewController:payVC delegate:self andAPMechantID:@""];
-    } else if ([orderInfo isEqualToString:@"银联"]) {
-        NSAssert(![orderInfo isEqualToString:@""], XZTIP_ORDERINFOISEMPTY);
-        NSAssert(self.appSchemeDict[UNION_URLIDENTIFIER], XZTIP_URLTYPE_SCHEME(UNION_URLIDENTIFIER));
-        [[UPPaymentControl defaultControl] startPay:(NSString *)orderInfo fromScheme:(NSString *)self.appSchemeDict[UNION_URLIDENTIFIER] mode:@"00" viewController:payVC];
-    }
+#pragma mark - 检查微信是否安装
+- (BOOL)isWXAppInstalled {
+    return [WXApi isWXAppInstalled];
+}
+
+#pragma mark - 检查云闪付(银联)是否安装
+- (BOOL)isPaymentAppInstalled {
+    return [[UPPaymentControl defaultControl] isPaymentAppInstalled];
 }
 
 #pragma mark - WXApiDelegate
