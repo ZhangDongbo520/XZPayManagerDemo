@@ -8,8 +8,10 @@
 
 #import "XZPayManager.h"
 
-#import "WXApi.h"
-#import <AlipaySDK/AlipaySDK.h>
+#import "WXApi.h"//微信
+#import <AlipaySDK/AlipaySDK.h>//支付宝
+#import "UPPaymentControl.h"//银联
+#import "UPAPayPlugin.h"//ApplePay
 
 #define XZTIP_CALLBACKURLISEMPTY @"url地址不能为空！"
 #define XZTIP_ORDERINFOISEMPTY @"订单信息不能为空！"
@@ -18,8 +20,9 @@
 
 NSString * const ALIPAY_URLIDENTIFIER = @"zhifubao";
 NSString * const WECHAT_URLIDENTIFIER = @"weixin";
+NSString * const UNION_URLIDENTIFIER = @"union";
 
-@interface XZPayManager()<WXApiDelegate>
+@interface XZPayManager()<WXApiDelegate, UPAPayPluginDelegate>
 
 @property (nonatomic, strong) NSMutableDictionary *appSchemeDict;//存储支付宝和微信的urlScheme
 
@@ -79,6 +82,25 @@ NSString * const WECHAT_URLIDENTIFIER = @"weixin";
             }
             NSLog(@"授权结果 authCode = %@", authCode?:@"");
         }];
+    } else if ([url.host isEqualToString:@"paydemo"]) {
+        [[UPPaymentControl defaultControl] handlePaymentResult:url completeBlock:^(NSString *code, NSDictionary *data) {
+            XZPayStatusCode errorCode = XZPayStatusSuccess;
+            NSString *signStr = @"";//交易成功返回的签名数据，需要发送到服务端进行验证
+            if ([code isEqualToString:@"success"]) {//交易成功
+                errorCode = XZPayStatusSuccess;
+            } else if ([code isEqualToString:@"fail"]) {//交易失败
+                errorCode = XZPayStatusFailure;
+            } else if ([code isEqualToString:@"cancel"]) {//交易取消
+                errorCode = XZPayStatusCancel;
+            }
+            if (data != nil) {
+                NSData *signData = [NSJSONSerialization dataWithJSONObject:data options:0 error:nil];
+                signStr = [[NSString alloc] initWithData:signData encoding:NSUTF8StringEncoding];
+            }
+            if (self.payCompleteCallBack) {
+                self.payCompleteCallBack(errorCode,signStr);
+            }
+        }];
     }
     
     return YES;
@@ -100,6 +122,8 @@ NSString * const WECHAT_URLIDENTIFIER = @"weixin";
             [WXApi registerApp:urlScheme];
         } else if ([urlName isEqualToString:ALIPAY_URLIDENTIFIER]) {
             [self.appSchemeDict setValue:urlScheme forKey:ALIPAY_URLIDENTIFIER];
+        } else if ([urlName isEqualToString:UNION_URLIDENTIFIER]) {
+            [self.appSchemeDict setValue:urlScheme forKey:UNION_URLIDENTIFIER];
         }
     }
 }
@@ -137,6 +161,20 @@ NSString * const WECHAT_URLIDENTIFIER = @"weixin";
     }
 }
 
+- (void)xz_payWithOrderInfo:(NSString *)orderInfo payVC:(UIViewController*)payVC  payCallBack:(XZPayCompleteCallBack)payCallBack {
+    NSAssert(orderInfo, XZTIP_ORDERINFOISEMPTY);
+    
+    self.payCompleteCallBack = payCallBack;
+    if ([orderInfo isEqualToString:@"ApplePay"]) {
+        NSAssert(![orderInfo isEqualToString:@""], XZTIP_ORDERINFOISEMPTY);
+        [UPAPayPlugin startPay:orderInfo mode:@"00" viewController:payVC delegate:self andAPMechantID:@""];
+    } else if ([orderInfo isEqualToString:@"银联"]) {
+        NSAssert(![orderInfo isEqualToString:@""], XZTIP_ORDERINFOISEMPTY);
+        NSAssert(self.appSchemeDict[UNION_URLIDENTIFIER], XZTIP_URLTYPE_SCHEME(UNION_URLIDENTIFIER));
+        [[UPPaymentControl defaultControl] startPay:(NSString *)orderInfo fromScheme:(NSString *)self.appSchemeDict[UNION_URLIDENTIFIER] mode:@"00" viewController:payVC];
+    }
+}
+
 #pragma mark - WXApiDelegate
 - (void)onResp:(BaseResp *)resp {
     if ([resp isKindOfClass:[PayResp class]]) {
@@ -158,6 +196,35 @@ NSString * const WECHAT_URLIDENTIFIER = @"weixin";
             default:
                 errorCode = XZPayStatusFailure;
                 errStr = resp.errStr;
+                break;
+        }
+        if (self.payCompleteCallBack) {
+            self.payCompleteCallBack(errorCode,errStr);
+        }
+    }
+}
+
+#pragma mark - UPAPayPluginDelegate
+- (void)UPAPayPluginResult:(UPPayResult *)payResult {
+    if ([payResult isKindOfClass:[UPPayResult class]]) {
+        XZPayStatusCode errorCode = XZPayStatusSuccess;
+        NSString *errStr = payResult.errorDescription;
+        switch (payResult.paymentResultStatus) {
+            case 0:
+                errorCode = XZPayStatusSuccess;
+                errStr = @"订单支付成功";
+                break;
+            case 1:
+                errorCode = XZPayStatusFailure;
+                errStr = @"订单支付失败";
+                break;
+            case 2:
+                errorCode = XZPayStatusCancel;
+                errStr = @"用户中途取消";
+                break;
+            default:
+                errorCode = XZPayStatusFailure;
+                errStr = payResult.errorDescription;
                 break;
         }
         if (self.payCompleteCallBack) {
